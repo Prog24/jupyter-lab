@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  jupyterlab:
+    container_name: 'jupyterlab'
+    image: jupyterlab
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    user: root
+    volumes:
+      - ./src:/home/jovyan/work
+    ports:
+      - 8888:8888
+    environment:
+      TZ: Asia/Tokyo
+    command: jupyter lab --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.token=''
